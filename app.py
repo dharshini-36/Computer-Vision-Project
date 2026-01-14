@@ -60,15 +60,17 @@ elif st.session_state.page == "paint":
 
     # Canvas
     canvas_result = st_canvas(
-        fill_color="rgba(0, 0, 0, 0)",
-        stroke_width=stroke_width,
-        stroke_color=color,
-        background_color=bg_color,
-        drawing_mode=tool,
-        height=500,
-        width=700,
-        key="canvas",
-    )
+    fill_color="rgba(0, 0, 0, 0)",
+    stroke_width=stroke_width,
+    stroke_color=color,
+    background_color=bg_color,
+    drawing_mode=tool,
+    height=500,
+    width=700,
+    key="canvas",
+    hide_toolbar=True  # <- This hides the “Send to Streamlit” button
+)
+
 
     # Download button
     if canvas_result.image_data is not None:
