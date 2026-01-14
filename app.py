@@ -81,19 +81,19 @@ canvas_result = st_canvas(
     key="canvas"
 )
 
-    # Download button
-    if canvas_result.image_data is not None:
-        img = Image.fromarray(canvas_result.image_data.astype("uint8"), "RGBA")
+# Download button
+if canvas_result.image_data is not None:
+    img = Image.fromarray(canvas_result.image_data.astype("uint8"), "RGBA")
 
-        filename = "painting_" + datetime.datetime.now().strftime("%Y%m%d_%H%M%S") + ".png"
+    filename = "painting_" + datetime.datetime.now().strftime("%Y%m%d_%H%M%S") + ".png"
 
-        st.download_button(
-            label="⬇️ Download Painting",
-            data=img.tobytes(),
-            file_name=filename,
-            mime="image/png"
-        )
+    st.download_button(
+        label="⬇️ Download Painting",
+        data=img.tobytes(),
+        file_name=filename,
+        mime="image/png"
+    )
 
-    # Navigation
-    if st.button("⬅️ Back to Instructions"):
-        go_to_instructions()  # Safe page switch
+# Navigation
+if st.button("⬅️ Back to Instructions"):
+    go_to_instructions()  # Safe page switch
