@@ -28,8 +28,8 @@ if st.session_state.page == "instructions":
     - Line, Rectangle, Circle
 
     ### 🎨 Colors & Brush
-    - Choose any color
-    - Adjust brush thickness
+    - Stroke & Fill colors
+    - Adjustable brush thickness
 
     ### 💾 Download
     - Download your painting as an image
@@ -53,8 +53,13 @@ elif st.session_state.page == "paint":
         ("freedraw", "line", "rect", "circle")
     )
 
-    color = st.sidebar.color_picker("Choose Color", "#000000")
+    stroke_color = st.sidebar.color_picker("Stroke Color", "#000000")
+    fill_color = st.sidebar.color_picker("Fill Color", "#ffffff")
+
     stroke_width = st.sidebar.slider("Brush Size", 1, 20, 3)
+
+    # Convert fill color to RGBA
+    fill_color_rgba = f"rgba({int(fill_color[1:3],16)}, {int(fill_color[3:5],16)}, {int(fill_color[5:7],16)}, 1)"
 
     # -------- HIDE CANVAS TOOLBAR --------
     st.markdown(
@@ -70,9 +75,9 @@ elif st.session_state.page == "paint":
 
     # -------- CANVAS --------
     canvas_result = st_canvas(
-        fill_color="rgba(0, 0, 0, 0)",
+        fill_color=fill_color_rgba if tool in ["rect", "circle"] else "rgba(0,0,0,0)",
         stroke_width=stroke_width,
-        stroke_color=color,
+        stroke_color=stroke_color,
         background_color="#ffffff",
         drawing_mode=tool,
         height=400,
