@@ -10,6 +10,13 @@ st.set_page_config(page_title="Painting App", layout="centered")
 if "page" not in st.session_state:
     st.session_state.page = "instructions"
 
+# Function to switch pages safely
+def go_to_painting():
+    st.session_state.page = "paint"
+
+def go_to_instructions():
+    st.session_state.page = "instructions"
+
 # ---------------- INSTRUCTION PAGE ----------------
 if st.session_state.page == "instructions":
     st.title("🎨 Painting Application")
@@ -32,8 +39,7 @@ if st.session_state.page == "instructions":
     """)
 
     if st.button("🚀 Start Painting"):
-        st.session_state.page = "paint"
-        st.experimental_rerun()
+        go_to_painting()  # Safe page switch
 
 # ---------------- PAINTING PAGE ----------------
 elif st.session_state.page == "paint":
@@ -79,5 +85,4 @@ elif st.session_state.page == "paint":
 
     # Navigation
     if st.button("⬅️ Back to Instructions"):
-        st.session_state.page = "instructions"
-        st.experimental_rerun()
+        go_to_instructions()  # Safe page switch
