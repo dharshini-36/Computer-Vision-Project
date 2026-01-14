@@ -43,7 +43,7 @@ if st.session_state.page == "instructions":
 
 # ---------------- PAINTING PAGE ----------------
 elif st.session_state.page == "paint":
-    st.title("🖌️ Streamlit Painting App")
+    st.title("🖌️Painting App")
 
     # -------- SIDEBAR CONTROLS --------
     st.sidebar.header("Controls")
