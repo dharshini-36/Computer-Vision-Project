@@ -58,19 +58,28 @@ elif st.session_state.page == "paint":
 
     bg_color = "#ffffff"
 
-    # Canvas
-    canvas_result = st_canvas(
-    fill_color="rgba(0, 0, 0, 0)",
-    stroke_width=stroke_width,
-    stroke_color=color,
-    background_color=bg_color,
-    drawing_mode=tool,
-    height=500,
-    width=700,
-    key="canvas",
-    hide_toolbar=True  # <- This hides the “Send to Streamlit” button
+    # Hide the toolbar
+st.markdown(
+    """
+    <style>
+    div[data-testid="stCanvasToolbar"] {
+        display: none !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
 )
 
+# Canvas
+canvas_result = st_canvas(
+    fill_color="rgba(0, 0, 0, 0)",
+    stroke_width=2,
+    stroke_color="#000000",
+    background_color="#ffffff",
+    height=400,
+    width=600,
+    key="canvas"
+)
 
     # Download button
     if canvas_result.image_data is not None:
